@@ -1,0 +1,15 @@
+*.pidb
+*.suo
+*.userprefs
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache
+bin
+config.log
+config.status
+configure
+install-sh
+missing
+obj
+pinta
