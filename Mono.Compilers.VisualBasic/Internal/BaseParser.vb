@@ -34,11 +34,23 @@ Public MustInherit Class BaseParser
     End Sub
 
 #Region "Position Functions"
+    Protected Sub Advance(Optional count As Integer = 1)
+        curr += count
+    End Sub
+
     Protected Function CurrentChar() As Char
         Return text(curr)
     End Function
 
+    Protected Function NextChar() As Char
+        If curr + 1 = total Then Return Chr(0)
+
+        Return text(curr + 1)
+    End Function
+
     Protected Function PreviousChar() As Char
+        If curr = 0 Then Return Chr(0)
+
         Return text(curr - 1)
     End Function
 #End Region
@@ -76,11 +88,17 @@ Public MustInherit Class BaseParser
     End Function
 
     Protected Function AtLineContinuation() As Boolean
-        Return CurrentChar() = "_" AndAlso TokenFacts.IsWhitespace(PreviousChar())
+        Return CurrentChar() = "_" 'AndAlso TokenFacts.IsWhitespace(PreviousChar())
     End Function
 
     Protected Function AtNumber() As Boolean
-        Return Char.IsNumber(CurrentChar())
+        Dim c = CurrentChar()
+
+        If Char.IsNumber(c) Then Return True
+
+        If c = "." AndAlso Char.IsNumber(NextChar()) Then Return True
+
+        Return False
     End Function
 
     Protected Function AtOperator() As Boolean
@@ -88,15 +106,29 @@ Public MustInherit Class BaseParser
     End Function
 
     Protected Function AtQuote() As Boolean
-        Return Asc(CurrentChar()) = 147 OrElse Asc(CurrentChar()) = 148
+        Return Asc(CurrentChar()) = 147 OrElse Asc(CurrentChar()) = 148 OrElse Asc(CurrentChar()) = 34
     End Function
 
     Protected Function AtSeparator() As Boolean
         Return TokenFacts.IsSeparator(CurrentChar())
     End Function
 
-    Protected Function AtTrivia() As Boolean
-        Return Char.IsWhiteSpace(CurrentChar()) AndAlso Asc(CurrentChar()) <> 13
+    Protected Function AtSingleLengthToken() As Boolean
+        Select Case CurrentChar()
+            Case ";"c, ","c, "("c, ")"c, "{"c, "}"c, "="c, "!"c, "?"c, "."c, ":"c
+                Return True
+        End Select
+
+        Return False
+    End Function
+
+    Protected Function AtTrivia(Optional includeContinuation As Boolean = False, Optional foundContinuation As Boolean = False) As Boolean
+        If includeContinuation Then
+            If CurrentChar() = "_"c Then Return True
+            If foundContinuation AndAlso AtEOL() Then Return True
+        End If
+
+        Return Char.IsWhiteSpace(CurrentChar()) AndAlso Asc(CurrentChar()) <> 13 AndAlso Asc(CurrentChar()) <> 10
     End Function
 
     Protected Function AtWhitespace() As Boolean
