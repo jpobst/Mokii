@@ -198,6 +198,12 @@ Class VBTokenParser
             Case "/="
                 Advance(all_2.Length - 1)
                 Return Syntax.Token(SyntaxKind.SlashEqualsToken, all_2)
+            Case ":="
+                Advance(all_2.Length - 1)
+                Return Syntax.Token(SyntaxKind.ColonEqualsToken, all_2)
+            Case "&="
+                Advance(all_2.Length - 1)
+                Return Syntax.Token(SyntaxKind.AmpersandEqualsToken, all_2)
         End Select
 
         ' Must be a 1 character operator
@@ -218,6 +224,10 @@ Class VBTokenParser
                 Return Syntax.Token(SyntaxKind.BackslashToken, oper_string)
             Case "/"
                 Return Syntax.Token(SyntaxKind.SlashToken, oper_string)
+            Case ":"
+                Return Syntax.Token(SyntaxKind.ColonToken, oper_string)
+            Case "&"
+                Return Syntax.Token(SyntaxKind.AmpersandToken, oper_string)
         End Select
 
         Return Nothing
@@ -258,16 +268,19 @@ Class VBTokenParser
     Private Function ConsumeToken() As SyntaxToken
         Dim start = curr
 
+        ' See if this is something like System.Text, where Text can't be a keyword
+        Dim can_be_keyword = (PreviousChar() <> ".")
+
         ' If this is a single character token, like "=", we're done
         If AtSingleToken() Then
             curr += 1
-            Return CreateToken(text.Substring(start, curr - start))
+            Return CreateToken(text.Substring(start, curr - start), can_be_keyword)
         End If
 
         While Not AtEOF()
             ' If we run into another token or EOL or trivia, we're done
             If AtSeparator() OrElse AtOperator() OrElse AtEOL() OrElse AtTrivia() Then
-                Return CreateToken(text.Substring(start, curr - start))
+                Return CreateToken(text.Substring(start, curr - start), can_be_keyword)
             End If
 
             ' Still part of the token, loop
@@ -275,22 +288,28 @@ Class VBTokenParser
         End While
 
         ' We hit the EOF, return the last token
-        Return CreateToken(text.Substring(start, curr - start))
+        Return CreateToken(text.Substring(start, curr - start), can_be_keyword)
     End Function
 
     Private Function ConsumeStringLiteral() As SyntaxToken
         Dim start = curr
 
         ' Consume the open quote
-        curr += 1
+        Advance()
 
         ' Consume everything until EOF or a close quote
         While Not AtEOF() AndAlso Not AtQuote()
-            curr += 1
+            Advance()
         End While
 
         ' Consume the close quote
-        curr += 1
+        Advance()
+
+        ' Check if this is a character token instead of a string
+        If (curr - start = 3 AndAlso CurrentChar() = "c") Then
+            Advance()
+            Return Syntax.Token(SyntaxKind.CharacterLiteralToken, Me.text.Substring(start, 4))
+        End If
 
         Dim text = Me.text.Substring(start, curr - start)
 
@@ -320,10 +339,10 @@ Class VBTokenParser
     End Function
 #End Region
 
-    Private Function CreateToken(text As String) As SyntaxToken
+    Private Function CreateToken(text As String, canBeKeyword As Boolean) As SyntaxToken
         Dim kind = SyntaxFacts.GetKeywordKind(text.ToLowerInvariant())
 
-        If kind = SyntaxKind.None Then
+        If kind = SyntaxKind.None OrElse Not canBeKeyword Then
             ' Must just be an identifier token
             Return Syntax.Token(SyntaxKind.IdentifierToken, text)
         Else

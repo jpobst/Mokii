@@ -25,7 +25,7 @@
 Module TokenFacts
     Private single_tokens As Char() = New Char() {"(", ")", ".", "=", ":"}
     Private separators As Char() = New Char() {"(", ")", "{", "}", "!", "#", ",", ".", ":"}
-    Private operators As Char() = New Char() {"&", "*", "+", "-", "<", ">", "^", "/", "\", "="}
+    Private operators As Char() = New Char() {"&", "*", "+", "-", "<", ">", "^", "/", "\", "=", ":"}
 
     Public Function IsCommentStart(text As String) As Boolean
         Select Case text.ToLowerInvariant()

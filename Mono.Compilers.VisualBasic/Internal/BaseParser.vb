@@ -115,7 +115,7 @@ Public MustInherit Class BaseParser
 
     Protected Function AtSingleLengthToken() As Boolean
         Select Case CurrentChar()
-            Case ";"c, ","c, "("c, ")"c, "{"c, "}"c, "="c, "!"c, "?"c, "."c, ":"c
+            Case ";"c, ","c, "("c, ")"c, "{"c, "}"c, "="c, "!"c, "?"c, "."c
                 Return True
         End Select
 
