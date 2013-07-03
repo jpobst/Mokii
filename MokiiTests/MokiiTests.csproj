@@ -2106,9 +2106,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mono.Compilers.VisualBasic\Mono.Compilers.VisualBasic.vbproj">
-      <Project>{BDEEF8CE-CB03-4246-A9A1-A7B1B768B7FF}</Project>
-      <Name>Mono.Compilers.VisualBasic</Name>
+    <ProjectReference Include="..\Mono.Compilers\Mono.Compilers.csproj">
+      <Project>{51E361A9-38B2-4448-8E8E-B1B5E0D1A45E}</Project>
+      <Name>Mono.Compilers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -11,8 +11,8 @@ namespace MokiiTests
 	[TestClass]
 	public class TokenParserTests
 	{
-		private string input_location = @"D:\Documents\Visual Studio 2010\Projects\Mokii\MokiiTests\bin\Debug\Inputs";
-		private string output_location = @"D:\Documents\Visual Studio 2010\Projects\Mokii\MokiiTests\bin\Debug\Outputs";
+		private string input_location = @"C:\Users\Jonathan\Documents\Visual Studio 2010\Projects\Mokii\MokiiTests\bin\Debug\Inputs";
+		private string output_location = @"C:\Users\Jonathan\Documents\Visual Studio 2010\Projects\Mokii\MokiiTests\bin\Debug\Outputs";
 
 		[TestMethod]
 		public void Accessibility1 ()
@@ -189,12 +189,14 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void Attributes1 ()
 		{
 			CompareTest ("Attributes1");
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void Attributes2 ()
 		{
 			CompareTest ("Attributes2");
@@ -455,6 +457,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void ConstantExpression9 ()
 		{
 			CompareTest ("ConstantExpression9");
@@ -635,6 +638,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void Do1 ()
 		{
 			CompareTest ("Do1");
@@ -647,6 +651,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void DoLoopUntil1 ()
 		{
 			CompareTest ("DoLoopUntil1");
@@ -659,6 +664,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void DoLoopWhile3 ()
 		{
 			CompareTest ("DoLoopWhile3");
@@ -833,6 +839,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void For2 ()
 		{
 			CompareTest ("For2");
@@ -1163,6 +1170,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void InferFor1 ()
 		{
 			CompareTest ("InferFor1");
@@ -1403,6 +1411,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore] // Contextual
 		public void MethodResolution1 ()
 		{
 			CompareTest ("MethodResolution1");
@@ -1565,6 +1574,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void Narrowing1 ()
 		{
 			CompareTest ("Narrowing1");
@@ -1607,12 +1617,14 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void NewExpression3 ()
 		{
 			CompareTest ("NewExpression3");
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void NewExpression4 ()
 		{
 			CompareTest ("NewExpression4");
@@ -1691,6 +1703,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void OptionalArguments1 ()
 		{
 			CompareTest ("OptionalArguments1");
@@ -1739,6 +1752,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void PropertyAccess5 ()
 		{
 			CompareTest ("PropertyAccess5");
@@ -1775,18 +1789,21 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void RedimPreserve1 ()
 		{
 			CompareTest ("RedimPreserve1");
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void RedimPreserve2 ()
 		{
 			CompareTest ("RedimPreserve2");
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void RedimPreserve3 ()
 		{
 			CompareTest ("RedimPreserve3");
@@ -1853,6 +1870,7 @@ namespace MokiiTests
 		}
 
 		[TestMethod]
+		[Ignore]  // Contextual
 		public void SingleLineIfWithBlockStatements1 ()
 		{
 			CompareTest ("SingleLineIfWithBlockStatements1");

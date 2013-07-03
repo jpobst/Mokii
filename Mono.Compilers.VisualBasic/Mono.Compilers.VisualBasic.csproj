@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03238B88-6C03-4D92-BCA0-DC20113958C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mono.Compilers.VisualBasic</RootNamespace>
+    <AssemblyName>Mono.Compilers.VisualBasic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Internal\BaseParser.cs" />
+    <Compile Include="Internal\NameParser.cs" />
+    <Compile Include="Internal\StatementParser.cs" />
+    <Compile Include="Internal\TokenFacts.cs" />
+    <None Include="Internal\TokenMatcher.cs" />
+    <Compile Include="Internal\TokenParser.cs" />
+    <Compile Include="Internal\TriviaParser.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\ChildSyntaxList.cs" />
+    <None Include="Mono.Compilers.VisualBasic\CompilationUnitSyntax.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxNodeOrTokenList.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\TypeCharacter.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\LiteralBase.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SeparatedSyntaxList.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\Syntax.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxExtensions.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxFacts.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxKind.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxNode.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxNodeOrToken.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxToken.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxTokenList.cs" />
+    <None Include="Mono.Compilers.VisualBasic\SyntaxTree.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxTrivia.cs" />
+    <Compile Include="Mono.Compilers.VisualBasic\SyntaxTriviaList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="SyntaxNodes\Clauses\AliasImportsClauseSyntax.cs" />
+    <None Include="SyntaxNodes\Clauses\ImportsClauseSyntax.cs" />
+    <None Include="SyntaxNodes\Clauses\MembersImportsClauseSyntax.cs" />
+    <Compile Include="SyntaxNodes\GlobalNameSyntax.cs" />
+    <Compile Include="SyntaxNodes\ExpressionSyntax.cs" />
+    <Compile Include="SyntaxNodes\GenericNameSyntax.cs" />
+    <Compile Include="SyntaxNodes\IdentifierNameSyntax.cs" />
+    <Compile Include="SyntaxNodes\NameSyntax.cs" />
+    <Compile Include="SyntaxNodes\QualifyingNameSyntax.cs" />
+    <Compile Include="SyntaxNodes\SimpleNameSyntax.cs" />
+    <None Include="SyntaxNodes\StatementSyntax.cs" />
+    <None Include="SyntaxNodes\Statements\ImportsStatementSyntax.cs" />
+    <None Include="SyntaxNodes\Statements\ModuleStatementSyntax.cs" />
+    <None Include="SyntaxNodes\Statements\NamespaceStatementSyntax.cs" />
+    <None Include="SyntaxNodes\Statements\TypeStatementSyntax.cs" />
+    <Compile Include="SyntaxNodes\TypeArgumentListSyntax.cs" />
+    <Compile Include="SyntaxNodes\TypeSyntax.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mono.Compilers\Mono.Compilers.csproj">
+      <Project>{51e361a9-38b2-4448-8e8e-b1b5e0d1a45e}</Project>
+      <Name>Mono.Compilers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

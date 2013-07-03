@@ -19,7 +19,7 @@ namespace MokiiSample
 			
 			var xw = XmlWriter.Create (outputFile, xws);
 
-			var tokens = root.DescendentTokens ();
+			var tokens = root.DescendantTokens ();
 
 			xw.WriteStartElement ("root");
 
@@ -27,23 +27,23 @@ namespace MokiiSample
 				xw.WriteStartElement ("token");
 
 				// Properties
-				xw.WriteElementString ("ContextualKind", token.ContextualKind.ToString ());
-				xw.WriteElementString ("FullWidth", token.FullWidth.ToString ());
-				xw.WriteElementString ("HasAnnotations", token.HasAnnotations.ToString ());
-				xw.WriteElementString ("HasDiagnostics", token.HasDiagnostics.ToString ());
-				xw.WriteElementString ("HasDirectives", token.HasDirectives.ToString ());
+				//xw.WriteElementString ("ContextualKind", token.kin.ContextualKind.ToString ());
+				//xw.WriteElementString ("FullWidth", token.FullWidth.ToString ());
+				//xw.WriteElementString ("HasAnnotations", token.HasAnnotations.ToString ());
+				xw.WriteElementString ("HasDiagnostics", token.ContainsDiagnostics.ToString ());
+				xw.WriteElementString ("HasDirectives", token.ContainsDirectives.ToString ());
 				xw.WriteElementString ("HasLeadingTrivia", token.HasLeadingTrivia.ToString ());
-				xw.WriteElementString ("HasStructuredTrivia", token.HasStructuredTrivia.ToString ());
+				//xw.WriteElementString ("HasStructuredTrivia", token.HasStructuredTrivia.ToString ());
 				xw.WriteElementString ("HasTrailingTrivia", token.HasTrailingTrivia.ToString ());
 				xw.WriteElementString ("IsBracketed", token.IsBracketed.ToString ());
 				xw.WriteElementString ("IsMissing", token.IsMissing.ToString ());
 				xw.WriteElementString ("Kind", token.Kind.ToString ());
-				xw.WriteElementString ("LeadingWidth", token.LeadingWidth.ToString ());
-				xw.WriteElementString ("TrailingWidth", token.TrailingWidth.ToString ());
+				//xw.WriteElementString ("LeadingWidth", token.LeadingWidth.ToString ());
+				//xw.WriteElementString ("TrailingWidth", token.TrailingWidth.ToString ());
 				xw.WriteElementString ("TypeCharacter", token.TypeCharacter.ToString ());
 				xw.WriteElementString ("Value", (token.Value ?? string.Empty).ToString ());
 				xw.WriteElementString ("ValueText", token.ValueText.ToString ().Replace (((char)10).ToString (), "[LF]").Replace (((char)13).ToString (), "[CR]"));
-				xw.WriteElementString ("Width", token.Width.ToString ());
+				//xw.WriteElementString ("Width", token.Width.ToString ());
 
 				// Trivia
 				WriteTrivia (xw, "LeadingTrivia", token.LeadingTrivia);
@@ -68,14 +68,14 @@ namespace MokiiSample
 				xw.WriteStartElement ("trivia");
 
 				// Properties
-				xw.WriteElementString ("FullWidth", trivia.FullWidth.ToString ());
-				xw.WriteElementString ("HasAnnotations", trivia.HasAnnotations.ToString ());
-				xw.WriteElementString ("HasDiagnostics", trivia.HasDiagnostics.ToString ());
+				//xw.WriteElementString ("FullWidth", trivia.FullWidth.ToString ());
+				//xw.WriteElementString ("HasAnnotations", trivia.HasAnnotations.ToString ());
+				xw.WriteElementString ("HasDiagnostics", trivia.ContainsDiagnostics.ToString ());
 				xw.WriteElementString ("HasStructure", trivia.HasStructure.ToString ());
 				xw.WriteElementString ("IsDirective", trivia.IsDirective.ToString ());
-				xw.WriteElementString ("IsElastic", trivia.IsElastic.ToString ());
+				//xw.WriteElementString ("IsElastic", trivia.IsElastic.ToString ());
 				xw.WriteElementString ("Kind", trivia.Kind.ToString ());
-				xw.WriteElementString ("Width", trivia.Width.ToString ());
+				//xw.WriteElementString ("Width", trivia.Width.ToString ());
 				
 				// Span
 				WriteSpan (xw, "FullSpan", trivia.FullSpan);
